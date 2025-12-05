@@ -79,9 +79,10 @@ export default function Login() {
         </Button>
 
         <Button
+          variant="text"
           fullWidth
-          sx={{ mt: 2 }}
-          href="/auth/forgot-password"
+          onClick={() => navigate("/forgot-password")}
+          sx={{ mt: 1 }}
         >
           Lupa Password?
         </Button>
