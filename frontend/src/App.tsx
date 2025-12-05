@@ -17,3 +17,5 @@ export default function App() {
 
 <Route path="/notifikasi" element={<NotificationList />} />
 <Route path="/" element={<LandingPage />} />
+<Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-success" element={<PasswordResetSuccess />} />
