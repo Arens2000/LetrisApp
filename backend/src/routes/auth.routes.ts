@@ -5,8 +5,15 @@ import { requireRole } from "../middleware/role";
 
 const router = Router();
 
-router.post("/create", verifyToken, requireRole(["admin"]), AuthController.createUser);
+// Admin membuat user
+router.post(
+  "/create",
+  verifyToken,
+  requireRole(["admin"]),
+  AuthController.createUser
+);
+
+// Ambil profil diri sendiri
 router.get("/profile", verifyToken, AuthController.getProfile);
 
 export default router;
-
