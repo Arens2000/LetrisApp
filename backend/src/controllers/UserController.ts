@@ -1,21 +1,34 @@
-import { db } from "../config/firebase";
+import { Request, Response } from "express";
+import { UserService } from "../services/UserService";
+import { success, error } from "../utils/response";
 
 export class UserController {
-  static async getAll(req: any, res: any) {
-    const snap = await db.collection("users").get();
-    res.json(snap.docs.map((d) => d.data()));
+  static async getAll(req: Request, res: Response) {
+    try {
+      const users = await UserService.getAll();
+      return success(res, "Data user ditemukan", users);
+    } catch (err: any) {
+      return error(res, err.message);
+    }
   }
 
-  static async updateUser(req: any, res: any) {
-    const { uid } = req.params;
-    await db.collection("users").doc(uid).update(req.body);
-    res.json({ message: "User updated" });
+  static async update(req: Request, res: Response) {
+    try {
+      const { uid } = req.params;
+      const updated = await UserService.update(uid, req.body);
+      return success(res, "User berhasil diupdate", updated);
+    } catch (err: any) {
+      return error(res, err.message);
+    }
   }
 
-  static async deleteUser(req: any, res: any) {
-    const { uid } = req.params;
-    await db.collection("users").doc(uid).delete();
-    res.json({ message: "User deleted" });
+  static async delete(req: Request, res: Response) {
+    try {
+      const { uid } = req.params;
+      const result = await UserService.delete(uid);
+      return success(res, "User berhasil dihapus", result);
+    } catch (err: any) {
+      return error(res, err.message);
+    }
   }
 }
-
