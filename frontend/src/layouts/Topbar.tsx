@@ -56,6 +56,8 @@ export default function Topbar({ handleDrawerToggle }: Props) {
           <AccountCircle fontSize="large" />
         </IconButton>
 
+        <NotificationBell />
+
         <Menu
           anchorEl={anchorEl}
           open={open}
