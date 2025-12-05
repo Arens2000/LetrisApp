@@ -2,6 +2,36 @@ import { Box, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getNilai, Nilai } from "./NilaiService";
 import { useAuth } from "../../context/AuthContext";
+import { exportNilaiPDF } from "../modules/export/ExportPDF";
+import { exportNilaiExcel } from "../modules/export/ExportExcel";
+import { hitungRekapSemester } from "../modules/export/RekapNilai";
+
+<Button
+  variant="contained"
+  onClick={() =>
+    exportNilaiPDF(
+      {
+        nama: profile.name,
+        nis: profile.nis,
+        kelas: profile.kelas,
+        semester: "Ganjil 2025",
+      },
+      nilai,
+      "Ibu Lestari, S.Pd"
+    )
+  }
+>
+  Export PDF
+</Button>
+
+<Button
+  variant="outlined"
+  sx={{ ml: 2 }}
+  onClick={() => exportNilaiExcel(nilai, "Rekap_Nilai")}
+>
+  Export Excel
+</Button>
+
 
 export default function SiswaNilai() {
   const { user } = useAuth();
