@@ -14,3 +14,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+<Route path="/notifikasi" element={<NotificationList />} />
