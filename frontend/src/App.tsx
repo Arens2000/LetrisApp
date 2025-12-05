@@ -16,3 +16,4 @@ export default function App() {
 }
 
 <Route path="/notifikasi" element={<NotificationList />} />
+<Route path="/" element={<LandingPage />} />
